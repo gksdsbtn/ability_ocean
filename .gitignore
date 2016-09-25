@@ -1,6 +1,19 @@
 
 # Created by https://www.gitignore.io/api/windows,java,eclipse,macos
 
+target/
+.classpath
+.project
+.settings
+*orig
+.springBeans
+*tmp/
+*backup
+*Backup
+log.xml
+.externalToolBuilders
+*.pyc
+
 ### Windows ###
 # Windows image file caches
 Thumbs.db
