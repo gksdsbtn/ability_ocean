@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.sindorim.ability">
+	<logger name="com.sindorim.abilityocean">
 		<level value="info" />
 	</logger>
 	
