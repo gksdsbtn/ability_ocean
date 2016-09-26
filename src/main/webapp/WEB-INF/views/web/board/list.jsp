@@ -24,7 +24,7 @@
 		</tr>
 	</c:forEach>
 </table>
-
+ 
 <p>
 </p>
 <p>
