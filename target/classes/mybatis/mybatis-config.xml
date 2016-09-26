@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="java.util.HashMap" alias="hmap"/>
+        <package name="com.sindorim.abilityocean.domain"/>
+    </typeAliases>
+<!--     <mappers>
+        <mapper resource="com.sindorim.abilityocean.mapper.*_SQL.xml"></mapper>
+    </mappers>
+    맵퍼 설정 여기서도 줄 수 있다. 
+    맵퍼의 양이 많아지면 좋을 듯 하다.
+ -->
+ </configuration>
+
