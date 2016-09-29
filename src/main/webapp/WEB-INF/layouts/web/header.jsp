@@ -7,4 +7,4 @@
 </header>
     <!--/#header-->
 <h1>HEADER</h1>
-
+<h2 ><a href="${pageContext.request.contextPath}/handle">TEST HANDLE LINK</a></h2>

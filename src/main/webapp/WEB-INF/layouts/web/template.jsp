@@ -7,11 +7,15 @@
 
 <head>
      <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="" content="">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <title>HOEM WITEH TILESS</title>
+    <meta name="keyword" content="">
+    <title>TAEWOONG HOME PAGE MAIN</title>
+    
+    
+    <script src="${pageContext.request.contextPath}/resources/web/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/web/js/jquery.form.min.js"></script>
+    
  </head>
 <body>
 	

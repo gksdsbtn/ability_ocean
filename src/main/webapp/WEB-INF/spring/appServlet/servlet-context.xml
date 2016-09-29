@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -10,12 +9,12 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<mvc:annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-	<beans:import resource="classpath:/META-INF/mvc-context.xml"/>
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<import resource="classpath:/META-INF/mvc-context.xml"/>
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 <!-- 	<beans:bean
@@ -24,27 +23,44 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
  -->
-	<context:component-scan base-package="com.sindorim.abilityocean" />
+ 	
+ 	
+ 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**"/>
+			<bean class="com.sindorim.abilityocean.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+ 	</mvc:interceptors>
+ 	
+ 	
+ 	
+	<context:component-scan
+		base-package="com.sindorim.abilityocean.controller"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 	<!-- use tiles -->
-	<beans:bean id="viewResolver"
+	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<beans:property name="viewClass"
+		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
-		<beans:property name="order" value="2" />
-	</beans:bean>
-	<beans:bean id="tilesviewResolver"
+		<property name="order" value="2" />
+	</bean>
+	<bean id="tilesviewResolver"
 		class="org.springframework.web.servlet.view.tiles2.TilesViewResolver" />
-	<beans:bean id="tilesConfigurer"
+	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-		<beans:property name="definitions">
-			<beans:list>
-				<beans:value>/WEB-INF/tiles/layouts.xml</beans:value>
-			</beans:list>
-		</beans:property>
-		<beans:property name="preparerFactoryClass"
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/layouts.xml</value>
+			</list>
+		</property>
+		<property name="preparerFactoryClass"
 			value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
-	</beans:bean>
+	</bean>
 	<!-- use tiles -->
 
 
-</beans:beans>
+</beans>
