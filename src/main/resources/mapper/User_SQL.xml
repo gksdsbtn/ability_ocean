@@ -33,6 +33,7 @@
 		SELECT 
 			TW_USER_CODE
 			, TW_USER_ID
+			, TW_USER_NAME
 			, TW_USER_PWD
 			, REG_DT
 			, ENABLED

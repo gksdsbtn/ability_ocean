@@ -3,5 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<script>
+$(function(e){
+	setTimeout(function() {
+		window.location.href = "${pageContext.request.contextPath}/basic/home";
+	}, 1500);
+});
+</script>
 
 <h2>유저</h2>

@@ -39,7 +39,7 @@ function login(){
 		, success: function(response){
 			if(response.header.status == 0000){
 				alert("로그인 성공");
-				window.location.href = "${pageContext.request.contextPath}/";
+				location.reload();
 			}
 			else{
 				alert("잘못된 로그인 정보입니다.");
@@ -51,12 +51,41 @@ function login(){
 	});
 }
 
+
+function logout(){
+	
+	$.ajax({
+		url: "${pageContext.request.contextPath}/user/logout"
+		//, data: $("#frm").serialize()
+		, dataType: "json"
+		, success: function(response){
+			if(response.header.status == 0000){
+				alert("로그아웃");
+				location.reload();
+			}
+			else{
+				alert("잘못된 로그인 정보입니다.");
+			}
+		}
+		, error: function(xhr, status, error){
+			alert(error + " 오류가 발생했습니다!");
+		}
+	});
+	
+}
+
 </script>
 
 <h2>로그인</h2>
-<form id="frm" method="post">
+<c:if test="${empty sessionScope.USER_INFO}">
+<form id="frm" method="post" >
 아이디 <input type="text" id="twUserId" name="twUserId" required/><br>
 비밀번호 <input type="password" id="twUserPwd" name="twUserPwd" required/><br>
 </form>
 <button id="signupBtn" onclick="signup();">회원가입</button>
 <button id="loginBtn" onclick="login();">로그인</button>
+</c:if>
+<c:if test="${not empty sessionScope.USER_INFO}">
+<h2>${sessionScope.USER_INFO.twUserName}님 어서오세요.</h2>
+<button id="logoutBtn" onclick="logout();">로그아웃</button>
+</c:if>

@@ -2,6 +2,7 @@ package com.sindorim.abilityocean.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +64,7 @@ public class UserController {
 				jsonResult.getHeader().setStatus("9999");
 				return jsonResult;
 			}
-			
+			System.out.println("user name : "+user.getTwUserName() );
 			SessionUtil.createUserSession(request, user);
 			
 			logger.debug("--------------------------------------------------------------");
@@ -73,6 +74,20 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return jsonResult;
+	}
+	
+	@RequestMapping(value ="/logout")
+	@ResponseBody
+	JsonResult logout(HttpServletRequest request){
+		
+		JsonResult jsonResult = new JsonResult();
+		
+		HttpSession session = request.getSession();
+        session.removeAttribute("USER_INFO");
+        
+        jsonResult.getHeader().setStatus("0000");
 		
 		return jsonResult;
 	}

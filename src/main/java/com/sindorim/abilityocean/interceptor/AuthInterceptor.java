@@ -18,20 +18,29 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		logger.debug("prehandler");
-		System.out.println("prehandler");
-		if(this.isMain(request)) return true;
+		//logger.debug("prehandler");
 		
-		if(this.isUriToExclude(request)) return true; 
+		System.out.println("dddddddddddddddddddddddddddddddddd");
+		
+		if(this.isMain(request)){
+			System.out.println(">>>> web root");
+			return true;
+		}
+		
+		
+		if(this.isUriToExclude(request)){
+			return true; 
+		}
 		
 		if(this.isMember(request).equals("ADMIN")){
 			response.sendRedirect(request.getContextPath() + "/admin");
 		}else if(this.isMember(request).equals("USER")){
 			response.sendRedirect(request.getContextPath() + "/basic");
+			System.out.println("------------------------------------------------");
 		}else{
+			System.out.println(">>>> prehandler");
 			response.sendRedirect(request.getContextPath() + "/");
 		};
-		
 		
 		return false;
 	}
@@ -41,6 +50,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
 		logger.debug("postHandler");
+		System.out.println("dddddddddqweqweqweqwewqe");
 		super.postHandle(request, response, handler, modelAndView);
 	}*/
 	
